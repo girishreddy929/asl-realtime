@@ -1,0 +1,29 @@
+# Feature contract (spec 7.2). Shared by training and live. STUB values are finalized in Phase 2.
+sequence:
+  length: 64          # T: resample longer clips, pad shorter ones with a mask
+
+body:
+  center: shoulder_midpoint
+  scale: shoulder_width
+  shoulders: [left_shoulder, right_shoulder]   # names from landmarks.yaml -> pose.names
+
+hand_local:
+  origin: wrist
+  scale_from: [0, 9]  # wrist -> middle-finger MCP distance
+
+handedness:
+  canonicalize: true  # mirror left-dominant clips/users so the dominant hand is in one channel
+  canonical_dominant: right
+
+missing:
+  fill_value: 0.0     # NaN -> 0, plus presence-mask flags
+  mask_parts: [left_hand, right_hand, pose, lips]
+
+motion:
+  velocity: true
+  acceleration: false
+
+eps: 1.0e-6           # guard against division by zero in scale terms
+
+stats:
+  source_split: train # normalization stats come from the train split only

@@ -1,0 +1,15 @@
+# Names only. Exact working versions are frozen in requirements-lock.txt.
+-r requirements-live.txt
+
+torch
+torchmetrics
+tensorboard
+onnx
+pandas
+pyarrow
+pyspark
+scikit-learn
+matplotlib
+tqdm
+kaggle
+# optional later: onnxsim

@@ -1,0 +1,31 @@
+# STUB: finalized in Phase 5. Values follow spec 8.3 / 8.4.
+seed: 42
+num_classes: 250
+model:
+  embed_dim: 192
+  num_blocks: 3
+  num_heads: 4
+  dropout: 0.2
+loss:
+  label_smoothing: 0.1
+optim:
+  name: adamw
+  lr: 1.0e-3
+  weight_decay: 0.01
+schedule:
+  name: cosine
+  warmup_epochs: 3
+train:
+  epochs: 60
+  batch_size: 64
+  amp: true
+early_stopping:
+  metric: val_top1
+  patience: 10
+debug:
+  num_classes: 10
+  num_clips: 200
+targets:
+  baseline_top1: 0.60
+  main_top1: 0.75
+  main_top5: 0.90

@@ -1,0 +1,65 @@
+# Runtime config. Sections are added as phases need them (state machine in Phase 7, TTS in Phase 9).
+
+camera:
+  backend: dshow        # dshow | msmf
+  width: 640
+  height: 480
+  fourcc: MJPG          # MJPG cuts frame read from ~14 ms to ~3 ms
+  fps: 30
+  open_retries: 3
+  retry_delay_s: 1.0
+  drop_stale_frames: true
+
+tracking:
+  mediapipe_version: "1.1.0"
+  model_path: artifacts/models/mediapipe/holistic_landmarker.task
+  model_url: https://storage.googleapis.com/mediapipe-models/holistic_landmarker/holistic_landmarker/float16/latest/holistic_landmarker.task
+  running_mode: VIDEO   # IMAGE for dataset extraction
+  min_face_detection_confidence: 0.5
+  min_face_suppression_threshold: 0.5
+  min_face_landmarks_confidence: 0.5
+  min_pose_detection_confidence: 0.5
+  min_pose_suppression_threshold: 0.5
+  min_pose_landmarks_confidence: 0.5
+  min_hand_landmarks_confidence: 0.5
+  output_face_blendshapes: false
+  output_segmentation_mask: false
+
+onnx:
+  providers: [CPUExecutionProvider]   # never the Azure provider
+  intra_op_threads: null              # decided by the Phase 6 benchmark
+
+buffer:
+  max_frames: 96
+
+segment:
+  min_frames: 8
+  max_frames: 96
+
+decision:
+  min_confidence: 0.55
+  min_margin: 0.15
+
+env_check:
+  # import name -> pip distribution name
+  libraries:
+    numpy: numpy
+    cv2: opencv-contrib-python
+    mediapipe: mediapipe
+    onnxruntime: onnxruntime
+    yaml: pyyaml
+    pyttsx3: pyttsx3
+    pytest: pytest
+    torch: torch
+    torchmetrics: torchmetrics
+    tensorboard: tensorboard
+    onnx: onnx
+    pyspark: pyspark
+    pyarrow: pyarrow
+    pandas: pandas
+    sklearn: scikit-learn
+    matplotlib: matplotlib
+    tqdm: tqdm
+  webcam_frames: 30
+  run_spark_test: true
+  run_tracker_smoke: true

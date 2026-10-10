@@ -1,0 +1,16 @@
+# STUB: finalized in Phase 3. Values follow spec 8.2 / 8.4.
+seed: 42
+num_classes: 29
+model:
+  hidden_dims: [128, 64]
+  dropout: 0.2
+optim:
+  name: adamw
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+train:
+  epochs: 30
+  batch_size: 256
+targets:
+  val_accuracy: 0.95
+  live_accuracy: 0.80

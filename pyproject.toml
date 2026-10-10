@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asl-realtime"
+version = "0.1.0"
+description = "Real-time, fully local ASL recognition (MediaPipe Tasks + ONNX Runtime CPU)"
+readme = "README.md"
+requires-python = ">=3.12"
+# Core deps stay minimal on purpose: CI installs only these.
+# Heavy libs (mediapipe, torch, opencv, onnxruntime) live in requirements-*.txt.
+dependencies = [
+    "numpy>=1.26",
+    "pyyaml>=6.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

@@ -1,0 +1,35 @@
+# Landmark contract (spec 7.1). The fixed order lives HERE and nowhere else.
+tracker:
+  name: mediapipe_tasks_holistic_landmarker
+  mediapipe_version: "1.1.0"
+
+# Order of the feature parts. Presence masks follow the same order.
+part_order: [left_hand, right_hand, pose, lips]
+
+hands:
+  num_points: 21
+  wrist_index: 0
+  middle_mcp_index: 9
+  fingertip_indices: [4, 8, 12, 16, 20]
+  # Verified in Phase 1 with on-screen labels. Allowed: unverified | person_left | mirrored
+  left_hand_semantics: unverified
+
+pose:
+  # Upper body only: nose, shoulders, elbows, wrists (BlazePose indices).
+  names: [nose, left_shoulder, right_shoulder, left_elbow, right_elbow, left_wrist, right_wrist]
+  indices: [0, 11, 12, 13, 14, 15, 16]
+
+face:
+  # Lip indices must lie inside the shared first 468 mesh points (the new model may return 478).
+  mesh_points_shared: 468
+  lips_indices: []   # STUB: fixed in Phase 2 from vision.FaceLandmarksConnections (lips)
+
+# Raw per-part counts returned by the tracker. Checked and confirmed in Phase 1.
+expected_counts:
+  verified: false
+  pose_total: 33
+  hand_total: 21
+  face_total: null   # 468 or 478, to be measured
+
+coordinates:
+  use_z: false

@@ -1,0 +1,31 @@
+# --- project data & artifacts (leading slash: only the top-level folders) ---
+/data/
+/artifacts/
+
+# --- environments & caches ---
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# --- experiment tracking / logs ---
+/runs/
+/logs/
+*.log
+
+# --- secrets & editor ---
+kaggle.json
+.env
+.vscode/
+
+# --- large binaries that should never be committed, wherever they land ---
+*.npy
+*.npz
+*.parquet
+*.onnx
+*.task
+*.pt
+*.pth

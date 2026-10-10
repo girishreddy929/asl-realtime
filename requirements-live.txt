@@ -1,0 +1,9 @@
+# Names only. Exact working versions are frozen in requirements-lock.txt.
+# Runtime (live app) + dev basics.
+numpy
+pyyaml
+opencv-contrib-python   # the ONLY opencv package; never install opencv-python alongside
+mediapipe
+onnxruntime
+pyttsx3
+pytest
